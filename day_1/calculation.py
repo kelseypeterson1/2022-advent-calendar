@@ -1,3 +1,5 @@
+from heapq import nlargest
+
 with open('input_file.txt') as f:
     text = f.readlines()
     elves = []
@@ -10,6 +12,9 @@ with open('input_file.txt') as f:
             elves.append(elf)
             elf = []
 
-max_calories = max(list(map(lambda elf: sum(elf), elves)))
-
+sum_calories = list(map(lambda elf: sum(elf), elves))
+max_calories = max(sum_calories)
 print(max_calories)
+
+top_calories = nlargest(3, sum_calories)
+print(sum(top_calories))
